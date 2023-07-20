@@ -17,14 +17,14 @@ export default function Home() {
   return (
     <>
       <div className='flex w-full items-center justify-center'>
-        <div className='w-[30%] bg-stone-200 border-4 border-gray-800'>
-          <div className='flex items-center  justify-center gap-4 mt-4 ml-4 mr-4'>
+        <div className='w-[30%] bg-stone-200 border-4 border-gray-800 sm:w-[90%]'>
+          <div className='flex items-center  justify-center gap-4 mt-4 ml-4 mr-4 sm:flex-col-reverse md:flex-col-reverse'>
             <input
               value={numbers}
               type="text"
               className={`
               ${isOnCalculator == true ? "bg-green-100" : "disable"}
-               w-[500px] h-[50px] text-2xl p-2 font-bold rounded border-4 border-gray-600`} />
+               w-[500px] h-[50px] text-2xl p-2 font-bold rounded border-4 border-gray-600 sm:w-full md:w-full lg:w-full `} />
             <div onClick={() => {
               setNumbers("")
               setIsOnCalculator(!isOnCalculator)
