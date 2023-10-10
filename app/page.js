@@ -7,12 +7,28 @@ import { useState } from "react"
 export default function Home() {
   const [isOnCalculator, setIsOnCalculator] = useState(false)
   const [numbers, setNumbers] = useState("")
+  const [isValid, setIsValid] = useState(null)
 
   const play = () => {
     var audio = new Audio("/cliclSound.mp3");
     audio.play();
   }
 
+  const turnOnOfHandler = () => {
+    setIsOnCalculator(!isOnCalculator)
+    setNumbers("")
+  }
+
+
+  const isValidHandler = (e) => {
+    if (numbers !== "") {
+      play()
+      setIsValid(true)
+      setNumbers(numbers + e.target.value)
+    } else {
+      setIsValid(false)
+    }
+  }
 
   return (
     <>
@@ -25,10 +41,7 @@ export default function Home() {
               className={`
               ${isOnCalculator == true ? "bg-green-100" : "disable"}
                w-[500px] h-[50px] text-2xl p-2 font-bold rounded border-4 border-gray-600 sm:w-full md:w-full lg:w-full `} />
-            <div onClick={() => {
-              setNumbers("")
-              setIsOnCalculator(!isOnCalculator)
-            }}>
+            <div onClick={() => turnOnOfHandler()}>
               <input type="checkbox"
                 className={`checkbox`} />
               <label for="checkbox" className={`switch 
@@ -121,34 +134,24 @@ export default function Home() {
                   <input
                     type="button"
                     value={"+"}
-                    onClick={e => {
-                      play()
-                      setNumbers(numbers + e.target.value)
-                    }}
+                    onClick={(e) => { isValidHandler(e) }}
                     className={`button w-custom ${isOnCalculator == true ? "" : "disablebtn"}`} />
                   <input
                     type="button"
                     value={"-"}
-                    onClick={e => {
-                      play()
-                      setNumbers(numbers + e.target.value)
-                    }}
+                    onClick={(e) => { isValidHandler(e) }}
                     className={`button w-custom ${isOnCalculator == true ? "" : "disablebtn"}`} />
                   <input
                     type="button"
                     value={"*"}
-                    onClick={e => {
-                      play()
-                      setNumbers(numbers + e.target.value)
-                    }}
+                    onClick={(e) => { isValidHandler(e) }}
+
                     className={`button w-custom ${isOnCalculator == true ? "" : "disablebtn"}`} />
                   <input
                     type="button"
                     value={"/"}
-                    onClick={e => {
-                      play()
-                      setNumbers(numbers + e.target.value)
-                    }}
+                    onClick={(e) => { isValidHandler(e) }}
+
                     className={`button w-custom ${isOnCalculator == true ? "" : "disablebtn"}`} />
                 </div>
               </div>
